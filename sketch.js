@@ -1,8 +1,14 @@
 var row_circles = [];
 var col_circles = [];
-var drawn_points = []
+var drawn_points = [];
+
+var angleRaise;
+var executionTime;
 
 function setup() {
+    angleRaise = parseInt(prompt('Raise in angle increment speed:'), 10);
+    executionTime = parseInt(prompt('How long should i draw? (seconds)'), 10) * 1000 + millis(); //millis for user input time
+
     createCanvas(1850, 1000);
     angleMode(DEGREES);
     var rows = 8;
@@ -11,25 +17,25 @@ function setup() {
     x = 300;
     y = 100;
     r = 100;
-    angleIncrement = 2;
+    angleIncrement = angleRaise;
 
     for (var i = 0; i < rows; i++) {
         let new_circle = new Circle(x, y, r, angleIncrement, 'v');
         row_circles.push(new_circle);
         x += 200;
-        angleIncrement += 1;
+        angleIncrement += angleRaise;
     }
 
     x = 100;
     y = 300;
     r = 100;
-    angleIncrement = 2;
+    angleIncrement = angleRaise;
 
     for (var i = 0; i < cols; i++) {
         let new_circle = new Circle(x, y, r, angleIncrement, 'h');
         col_circles.push(new_circle);
         y += 200;
-        angleIncrement += 1;
+        angleIncrement += angleRaise;
     }
 
 }
@@ -60,8 +66,9 @@ function draw() {
     noStroke();
     for (var i = 0; i < drawn_points.length; i++) {
         ellipse(drawn_points[i].x, drawn_points[i].y, 5);
-        if (i > 6400 * 2) {
-            noLoop();
-        }
+    }
+
+    if (executionTime < millis()) {
+        noLoop();
     }
 }
