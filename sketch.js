@@ -6,8 +6,8 @@ var angleRaise;
 var executionTime;
 
 function setup() {
-    angleRaise = parseInt(prompt('Raise in angle increment speed:'), 10);
-    executionTime = parseInt(prompt('How long should i draw? (seconds)'), 10) * 1000 + millis(); //millis for user input time
+    angleRaise = parseFloat(prompt('Raise in angle increment speed:'), 10);
+    executionTime = parseFloat(prompt('How long should i draw? (seconds)'), 10) * 1000 + millis(); //millis for user input time
 
     createCanvas(1850, 1000);
     angleMode(DEGREES);
