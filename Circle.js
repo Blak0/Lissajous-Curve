@@ -5,6 +5,7 @@ class Circle {
         this.r = d / 2;
         this.angle = 0;
         this.angle_incr = step_angle;
+        this.fontSize = 20;
         if (line_dir != 'v' && line_dir != 'h') {
             throw new Error('line_dir must be "v" or "h" for vertical or horizontal line following the dot');
         } else {
@@ -40,5 +41,15 @@ class Circle {
             line(0, this.dotPos.y, width, this.dotPos.y);
         }
 
+        //show val
+        writeCenteredText(this.pos, this.angle_incr, this.fontSize)
+
     }
+}
+
+function writeCenteredText(parent_pos, str, fontSize) {
+    let textX = parent_pos.x - textWidth(str.toString()) / 2;
+    let textY = parent_pos.y + fontSize / 2
+    textSize(fontSize);
+    text(str, textX, textY);
 }
